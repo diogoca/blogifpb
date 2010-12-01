@@ -1,0 +1,14 @@
+==Funcionais==
+
+CRUD em:
+
+  * Post
+  * Usuário
+  * Comentário
+  * Blog
+  * Categoria
+
+==Não funcionais==
+
+  * Upload de imagens no post
+  * Uso de TinyMCE como WYSIWYG Editor (http://tinymce.moxiecode.com/) para o edição, criação do campo texto da tabela Post
