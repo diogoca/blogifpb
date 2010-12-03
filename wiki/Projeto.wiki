@@ -1,11 +1,11 @@
 = Documento de descrição do projeto =
 
   * Requisitos (Funcionais e Não Funcionais); -> Feito
-  * Gráfico de Atividades (Gantt);
-  * Descrição da Equipe (Dica: alternância de gerenecia); -> Feito
+  * Gráfico de Atividades (Gantt); -> Feito
+  * Descrição da Equipe (Dica: alternância de gerencia); -> Feito
   * Casos de Uso; -> Feito
   * Modelagem da Arquitetura;
-  * Prototipagem; 
+  * Prototipagem (Wireframes); 
   * Modelagem ER; -> Feito
   * Diagrama de Classe;
   * Diagrama de Sequência;
