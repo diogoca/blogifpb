@@ -1,13 +1,14 @@
 = Documento de descrição do projeto =
 
-  * Requisitos (Funcionais e Não Funcionais);
+  * Requisitos (Funcionais e Não Funcionais); {Feito}
   * Gráfico de Atividades (Gantt);
-  * Descrição da Equipe (Dica: alternância de gerenecia);
-  * Casos de Uso;
+  * Descrição da Equipe (Dica: alternância de gerenecia); {Feito}
+  * Casos de Uso; {Feito}
   * Modelagem da Arquitetura ;
-  * Prototipagem;
-  * Modelagem ER;
-  * Diagramas (Classe, Pacotes e Seqüência);
+  * Prototipagem; 
+  * Modelagem ER; {Feito}
+  * Diagrama de Classe;
+  * Diagrama de Sequência;
   * Documentação do código (http://www.phpdoc.org/);
   * Código fonte
 
