@@ -6,97 +6,94 @@
 	<meta name="description" content="An minimal site format" />
 	<meta name="keywords" content="blog" />
  <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />  
-<title>minimal</title>
+<title>Blog IFPB</title>
 </head>
+<?php 
+	// Include all DAO files
+	require_once('..\blogifpb\blogifpb\include_dao.php');
+	session_start();
+	
+	//funções para login e blog para administrador
+	if(!isset($_SESSION['logado']))
+	$_SESSION['logado'] = "off";
+	
+	if( ( isset($_POST['nome'])) and (isset($_POST['senha'])) ){
+		$nome=$_POST['nome']; 
+		$senha=$_POST['senha'];
+		
+		$u = DAOFactory::getUsuarioDAO()->queryAll();
+		foreach($u as $key=>$usu){
+			if ( ($usu->email == $nome) and ($usu->senha == $senha) ){
+				$_SESSION['logado'] = $nome; 
+				break; 
+			}
+		}
+	}
+	if(isset($_GET['logoff']))$_SESSION['logado']="off";
+	
+	if($_SESSION['logado'] == "off"){
+	$menu = "<li class=\"login\"><form action=\"index.php\" method=\"POST\">Login :<input type=\"text\" name=\"nome\" />Senha :<input type=\"password\" name=\"senha\"/><input type=\"submit\" value=\"OK\"/></form></li>";
+	}
+	else 
+	$menu = "<li><a href=\"#\">Posts</a></li><li><a href=\"#\">Categorias</a></li><li><a href=\"#\">Usuarios</a></li>".
+			"<li class = \"login\" > Logado : ".$_SESSION['logado']."</li><li><a class = \"login\" href=\"index.php?logoff=off\">Logout</a></li>";
+	
+	//função das para mostrar as categorias
+	function showcategorias(){
+		$c = DAOFactory::getCategoriaDAO()->queryAllOrderBy('nome');
+		foreach($c as $key=>$cate){
+			echo "<li><a href=\"#\">$cate->nome</a></li>";
+		}
+	}
+	
+	//função das para mostrar os posts
+	function showpost(){
+		$p = DAOFactory::getPostDAO()->queryAllOrderBy('data');
+		foreach($p as $key=>$pos){
+		echo "<h3 class=\"post-title\"><a href=\"#\">$pos->titulo</a></h3>";
+		echo "<p>$pos->texto</p>";
+		
+		$u = DAOFactory::getUsuarioDAO()->load($pos->idUsuario);
+		$c = DAOFactory::getCategoriaDAO()->load($pos->idCategoria);
+		$com = DAOFactory::getComentarioDAO()->queryAll();
+		$coms = 0;
+		foreach($com as $k=>$come){if ($come->idPost == $pos->idPost) $coms++;}
+        echo "<div class=\"commentbox\">Postado por $u->email | $pos->data | $coms comentarios <br> Categoria : $c->nome</div>";
+		
+		}
+	}
+?>
 
 <body>
    <div id="container">
    
         
 
-        <div id="header"><h1>mini<span>mal</span></h1></div>
+        <div id="header"><h1>Blog <span>IFPB</span></h1></div>
 
       <div id="wrapper">
 
         <div id="navigation">
-           <ul>
-                <li><a href="#">Home</a></li>
-                <li class="current_page_item"><a href="index.html">Journal</a></li>
-                <li><a href="#">Work</a></li>
-                <li><a href="#">Folio</a></li>
-                <li><a href="#">Extras</a></li>
-                <li><a href="#">About</a></li>
-           </ul>
+           <ul >
+                <li class="current_page_item"><a href="index.php">Home</a></li>
+				<?php echo $menu; 	?>
+			</ul>
         </div>
         
 
       
         <div id="content-wrapper">
             <div id="content">
-                <h3 class="post-title"><a href="#">Post Title</a></h3><span class="date">10.07.08</span>
-                <p>Lorem <a href="#">ipsum dolor</a> sit amet, consectetuer adipiscing elit. Fusce lorem ligula, lobortis vitae, imperdiet nec, tempor at, lectus. Pellentesque vitae lorem. Sed mauris. Praesent tempor eros ac sapien. Maecenas adipiscing, nisl id tempor imperdiet, urna dui dignissim pede, varius fermentum urna dui ac ante. Sed consequat aliquet enim. Curabitur sem sem, mattis pellentesque, tincidunt eu, rhoncus sed, purus. Sed id massa. Vivamus consequat, quam eget laoreet consequat, urna nisl commodo nisl, nec convallis quam ligula venenatis nulla. Nunc viverra. Aliquam adipiscing, velit condimentum molestie tempus, ante tellus feugiat mauris, vitae hendrerit dui tellus vitae dui. Proin vel pede a pede elementum bibendum. Proin scelerisque velit ut lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus a sapien. Sed ullamcorper, mi sit amet semper tincidunt, sem sem tincidunt tortor, non ultricies dui lorem id dolor. Nunc diam. Aenean arcu nibh, hendrerit eu, feugiat sit amet, pulvinar eget, dui. Integer interdum pretium ligula.</p>
-                <h3>A quote</h3>
-                <blockquote><p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus a sapien. Sed ullamcorper, mi sit amet semper tincidunt, sem sem tincidunt tortor, non ultricies dui lorem id dolor. Nunc diam. Aenean arcu nibh, hendrerit eu, feugiat sit amet, pulvinar eget, dui. Integer interdum pretium ligula....</p></blockquote>
-                <h3>An Unordered List</h3>
-                <ul>
-                        <li>This is a list</li>
-                        <li>This is a list</li>
-                        <li>This is a list</li>
-                        <li>This is a list</li>
-                        <li>This is a list</li>    
-                </ul>
-                <h3>An Ordered List</h3>
-                <ol>
-                        <li>Dance</li>
-                        <li>Live</li>
-                        <li>Breathe</li>
-                </ol>
-                <h2>This is another really big header</h2>
-                <h3>This one isn't ridiculously big</h3>
-                <h4>Details are important</h4>
-                <div class="commentbox">Posted by A. Bloggar | 10 July 2008 | Comments</div>
-                <div id="comments">
-	           <h4>3 Responses to &#8220;Post Title&#8221;</h4>
-	
-		        <div class="comment">
-			<cite>Commenter:</cite>
-			<br />
-			<p>I really like to test comments</p>			
-			<small><a href="#comment-22" title="">June 16th, 2008 at 9:15 pm</a></small>
-		</div>
-		
-		
-	
-		        <div class="comment">
-			<cite>Another Commenter:</cite>
-			<br />
-			<p>I really like to test comments</p>			
-			<small><a href="#comment-22" title="">June 16th, 2008 at 9:15 pm</a></small>
-		</div>
-	
-	
-		        <div class="comment">
-			<cite>Yet another commenter:</cite>
-			<br />
-			<p>I really like to test comments</p>			
-			<small><a href="#comment-22" title="">June 16th, 2008 at 9:15 pm</a></small>
-		</div>
-	
-	
-        </div>
+                <?php showpost(); ?>
 
-             </div>   
+            </div> 			
         </div>
         
         <div id="sidebar-wrapper">
           <div id="sidebar">
-           <h3>Categories</h3>
+           <h3>Categorias</h3>
            <ul id="sidenotes">
-                <li><a href="#">Academics</a></li>
-                <li><a href="#">Life</a></li>
-                <li><a href="#">Personal</a></li>
-                <li><a href="#">That other stuff</a></li>
-                <li><a href="#">Design</a></li>
+            <?php showcategorias(); ?>
            </ul>
           </div> 
         </div>

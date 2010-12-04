@@ -1,3 +1,10 @@
+/*modificações */
+.login 
+{
+ color: white; 	font: normal 15px Verdana, Arial, Sans-Serif;
+ text-transform: none;
+ }
+
 body 
 {
 	margin: 0;
@@ -77,6 +84,7 @@ cite
 }
 
 /* Structure */
+
 
 #container
 {
@@ -341,5 +349,7 @@ ul#sidenotes li a:active
 	color: #003355;
 	background-color:transparent;
 }
+
+
 
 
