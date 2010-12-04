@@ -15,11 +15,13 @@
 	
 	//funções para login e blog para administrador
 	if($_SESSION['logado'] == "off"){
-	$menu = "<li class=\"login\"><form action=\"index.php\" method=\"POST\">Login :<input type=\"text\" name=\"nome\" />Senha :<input type=\"password\" name=\"senha\"/><input type=\"submit\" value=\"OK\"/></form></li>";
+	$logon = "<form action=\"index.php\" method=\"POST\" >Login :<input type=\"text\" name=\"nome\" />Senha :<input type=\"password\" name=\"senha\"/><input type=\"submit\" value=\"OK\"/></form>";
+	$menu =""; 
 	}
-	else 
-	$menu = "<li><a href=\"#\">Posts</a></li><li><a href=\"#\">Categorias</a></li><li><a href=\"#\">Usuarios</a></li>".
-			"<li class = \"login\" > Logado : ".$_SESSION['logado']."</li><li><a class = \"login\" href=\"index.php?logoff=off\">Logout</a></li>";
+	else {
+	$menu = "<li><a href=\"#\">Posts</a></li><li><a href=\"#\">Categorias</a></li><li><a href=\"#\">Comentarios</a></li><li><a href=\"#\">Usuarios</a></li>";
+	$logon =" Logado : ".$_SESSION['logado']."<a style=\"float:right\" href=\"index.php?logoff=off\">Logout</a></li>";
+	}
 	
 	//função das para mostrar as categorias
 	function showcategorias(){
@@ -106,13 +108,15 @@
         <div id="header"><h1>Blog <span>IFPB</span></h1></div>
 
       <div id="wrapper">
-
+		
         <div id="navigation">
            <ul >
                 <li class="current_page_item"><a href="index.php">Home</a></li>
-				<?php echo $menu; 	?>
+				<?php echo $menu; 	?>	
+				<div class="logon" ><?php echo $logon; ?></div>
 			</ul>
-        </div>
+			
+		</div>
         
 
       
