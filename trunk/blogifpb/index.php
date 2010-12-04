@@ -10,7 +10,7 @@
 </head>
 <?php 
 	// Include all DAO files
-	require_once('..\blogifpb\blogifpb\include_dao.php');
+	require_once('include_dao.php');
 	session_start();
 	
 	//funções para login e blog para administrador
