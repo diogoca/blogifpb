@@ -29,11 +29,36 @@
 		}
 	}
 	
+	//função para pegar o ID do post
+	function getpost(){
+	$post = "no";
+	if (isset($_GET["post"])) $post =$_GET["post"];
+	return $post;
+	}
+	
+	
+	//registro de comentarios
+	if(isset($_POST["texto"])){
+		$comet = new Comentario();
+		$comet->idPost = getpost();
+		$comet->texto = $_POST['texto'];
+		if($_POST["nome"] != ""){
+			$comet->nome = $_POST['nome'];}
+		else 
+			$comet->nome = "Anônimo";
+		if(isset($_POST['email']))
+			$comet->email = $_POST["email"];
+		if(isset($_POST['site']))
+			$comet->site = $_POST["site"];
+		DAOFactory::getComentarioDAO()->insert($comet);	
+	}
+	
 	//função das para mostrar os posts com todas a variaveis
-
+	
 	function showpost(){
+		$posti = getpost();
 		$p = DAOFactory::getPostDAO()->queryAllOrderBy('data');
-		if (isset($_GET["post"])) {
+		if ($posti != "no") {
 				foreach($p as $key=>$pos){
 					if($pos->idPost == $_GET["post"]){
 					
@@ -43,16 +68,26 @@
 						$c = DAOFactory::getCategoriaDAO()->load($pos->idCategoria);
 						$com = DAOFactory::getComentarioDAO()->queryAll();
 						$coms = 0;
-						$s = "</div>";
+						$s = "";
 						echo "<div class=\"commentbox\">Postado por $u->email | $pos->data <br> Categoria : $c->nome</div>";
 						foreach($com as $k=>$come){
 							if ($come->idPost == $pos->idPost) {
 								$coms++;
-								$s = "<div class=\"comment\"><cite>$come->nome</cite><cite> - $come->email</cite><br />".
-									 "<cite>$come->site</cite><br /><p>$come->texto</p></div></div>";
+								$s .= "<div class=\"comment\"><cite>$come->nome</cite><cite> - $come->email</cite><br />".
+									 "<cite>$come->site</cite><br /><p>$come->texto</p></div>";
 							}
 						}
+						$s .="</div>";
 						echo "<div id=\"comments\"><h4>$coms Respostas para &#8220;$pos->titulo&#8221;</h4>".$s;
+						
+						echo "<div id=\"comments\"><h5>Comentar: </h5><div class=\"comment\">".
+						"<form action=\"post.php?post=$posti\" method=\"POST\">".
+						"<cite>Nome: <input type=\"text\" name=\"nome\"/></cite><br />".
+						"<cite>Email:<input type=\"text\" name=\"email\"/> </cite><br />".
+						"<cite>Site: <input type=\"text\" name=\"site\"/></cite><br />Comentario:<br/>".
+						"<textarea name=\"texto\" rows=\"4\" cols=\"40\"></textarea><br/>".
+						"<input type=\"submit\" value=\"Enviar\"></form></div></div>";
+						
 						break;
 					}
 				}
@@ -60,6 +95,7 @@
 		
 	}
 	
+
 ?>
 
 <body>
