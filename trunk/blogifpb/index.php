@@ -32,11 +32,13 @@
 	if(isset($_GET['logoff']))$_SESSION['logado']="off";
 	
 	if($_SESSION['logado'] == "off"){
-		$logon = "<form action=\"index.php\" method=\"POST\" >Login :<input type=\"text\" name=\"nome\" />Senha :<input type=\"password\" name=\"senha\"/><input type=\"submit\" value=\"OK\"/></form>";
+		$logon = "<form action=\"index.php\" method=\"POST\" >Login :<input type=\"text\" name=\"nome\" />Senha :".
+				 "<input type=\"password\" name=\"senha\"/><input type=\"submit\" value=\"OK\"/></form>";
 		$menu =""; 
 	}
 	else {
-		$menu = "<li><a href=\"#\">Posts</a></li><li><a href=\"#\">Categorias</a></li><li><a href=\"#\">Comentarios</a></li><li><a href=\"#\">Usuarios</a></li>";
+		$menu = "<li><a href=\"#\">Posts</a></li><li><a href=\"categorias.php\">Categorias</a></li>".
+				"<li><a href=\"#\">Comentarios</a></li><li><a href=\"#\">Usuarios</a></li>";
 		$logon =" Logado : ".$_SESSION['logado']."<a style=\"float:right\" href=\"index.php?logoff=off\">Logout</a></li>";
 	}	
 	
