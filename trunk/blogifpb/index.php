@@ -42,26 +42,64 @@
 	function showcategorias(){
 		$c = DAOFactory::getCategoriaDAO()->queryAllOrderBy('nome');
 		foreach($c as $key=>$cate){
-			echo "<li><a href=\"#\">$cate->nome</a></li>";
+			echo "<li><a href=\"index.php?cat=$cate->idCategoria\">$cate->nome</a></li>";
 		}
 	}
 	
-	//função das para mostrar os posts
+	//função das para mostrar os posts com todas a variaveis
+
 	function showpost(){
 		$p = DAOFactory::getPostDAO()->queryAllOrderBy('data');
-		foreach($p as $key=>$pos){
-		echo "<h3 class=\"post-title\"><a href=\"#\">$pos->titulo</a></h3>";
-		echo "<p>$pos->texto</p>";
-		
-		$u = DAOFactory::getUsuarioDAO()->load($pos->idUsuario);
-		$c = DAOFactory::getCategoriaDAO()->load($pos->idCategoria);
-		$com = DAOFactory::getComentarioDAO()->queryAll();
-		$coms = 0;
-		foreach($com as $k=>$come){if ($come->idPost == $pos->idPost) $coms++;}
-        echo "<div class=\"commentbox\">Postado por $u->email | $pos->data | $coms comentarios <br> Categoria : $c->nome</div>";
-		
+		if (isset($_GET["cat"])) {
+			foreach($p as $key=>$pos){
+				if($pos->idCategoria == $_GET["cat"]){
+				
+					echo "<h3 class=\"post-title\"><a href=\"index.php?post=$pos->idPost\">$pos->titulo</a></h3>";
+					echo "<p>$pos->texto</p>";
+					$u = DAOFactory::getUsuarioDAO()->load($pos->idUsuario);
+					$c = DAOFactory::getCategoriaDAO()->load($pos->idCategoria);
+					$com = DAOFactory::getComentarioDAO()->queryAll();
+					$coms = 0;
+					
+					foreach($com as $k=>$come){if ($come->idPost == $pos->idPost) $coms++;}
+					echo "<div class=\"commentbox\">Postado por $u->email | $pos->data | $coms comentarios <br> Categoria : $c->nome</div>";
+				}
+			}
 		}
+		elseif (isset($_GET["post"])) {
+				foreach($p as $key=>$pos){
+					if($pos->idPost == $_GET["post"]){
+					
+						echo "<h3 class=\"post-title\"><a href=\"index.php?post=$pos->idPost\">$pos->titulo</a></h3>";
+						echo "<p>$pos->texto</p>";
+						$u = DAOFactory::getUsuarioDAO()->load($pos->idUsuario);
+						$c = DAOFactory::getCategoriaDAO()->load($pos->idCategoria);
+						$com = DAOFactory::getComentarioDAO()->queryAll();
+						$coms = 0;
+						
+						foreach($com as $k=>$come){if ($come->idPost == $pos->idPost) $coms++;}
+						echo "<div class=\"commentbox\">Postado por $u->email | $pos->data | $coms comentarios <br> Categoria : $c->nome</div>";
+						break;
+					}
+				}
+		}
+		else{
+			foreach($p as $key=>$pos){
+			
+				echo "<h3 class=\"post-title\"><a href=\"index.php?post=$pos->idPost\">$pos->titulo</a></h3>";
+				echo "<p>$pos->texto</p>";				
+				$u = DAOFactory::getUsuarioDAO()->load($pos->idUsuario);
+				$c = DAOFactory::getCategoriaDAO()->load($pos->idCategoria);
+				$com = DAOFactory::getComentarioDAO()->queryAll();
+				$coms = 0;
+				
+				foreach($com as $k=>$come){if ($come->idPost == $pos->idPost) $coms++;}
+				echo "<div class=\"commentbox\">Postado por $u->email | $pos->data | $coms comentarios <br> Categoria : $c->nome</div>";
+				
+			}
+	    }
 	}
+	
 ?>
 
 <body>
