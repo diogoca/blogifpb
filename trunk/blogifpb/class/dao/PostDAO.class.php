@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2010-12-03 15:24
+ * @date: 2010-12-03 22:02
  */
 interface PostDAO{
 
@@ -13,7 +13,7 @@ interface PostDAO{
 	 * @param String $id primary key
 	 * @Return Post 
 	 */
-	public function load($idPost, $idCategoria, $idUsuario, $idTag);
+	public function load($idPost, $idCategoria, $idUsuario);
 
 	/**
 	 * Get all records from table
@@ -30,7 +30,7 @@ interface PostDAO{
  	 * Delete record from table
  	 * @param post primary key
  	 */
-	public function delete($idPost, $idCategoria, $idUsuario, $idTag);
+	public function delete($idPost, $idCategoria, $idUsuario);
 	
 	/**
  	 * Insert record to table

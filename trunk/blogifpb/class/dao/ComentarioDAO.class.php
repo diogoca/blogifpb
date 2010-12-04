@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2010-12-03 15:24
+ * @date: 2010-12-03 22:02
  */
 interface ComentarioDAO{
 
@@ -58,7 +58,6 @@ interface ComentarioDAO{
 	public function queryBySite($value);
 
 	public function queryByTexto($value);
-
 
 	public function deleteByNome($value);
 

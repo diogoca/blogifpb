@@ -3,7 +3,7 @@
  * Class that operate on table 'post'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2010-12-03 15:24
+ * @date: 2010-12-03 22:02
  */
 class PostMySqlDAO implements PostDAO{
 
@@ -13,13 +13,12 @@ class PostMySqlDAO implements PostDAO{
 	 * @param String $id primary key
 	 * @return PostMySql 
 	 */
-	public function load($idPost, $idCategoria, $idUsuario, $idTag){
-		$sql = 'SELECT * FROM post WHERE id_post = ?  AND id_categoria = ?  AND id_usuario = ?  AND id_tag = ? ';
+	public function load($idPost, $idCategoria, $idUsuario){
+		$sql = 'SELECT * FROM post WHERE id_post = ?  AND id_categoria = ?  AND id_usuario = ? ';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($idPost);
 		$sqlQuery->setNumber($idCategoria);
 		$sqlQuery->setNumber($idUsuario);
-		$sqlQuery->setNumber($idTag);
 
 		return $this->getRow($sqlQuery);
 	}
@@ -48,13 +47,12 @@ class PostMySqlDAO implements PostDAO{
  	 * Delete record from table
  	 * @param post primary key
  	 */
-	public function delete($idPost, $idCategoria, $idUsuario, $idTag){
-		$sql = 'DELETE FROM post WHERE id_post = ?  AND id_categoria = ?  AND id_usuario = ?  AND id_tag = ? ';
+	public function delete($idPost, $idCategoria, $idUsuario){
+		$sql = 'DELETE FROM post WHERE id_post = ?  AND id_categoria = ?  AND id_usuario = ? ';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($idPost);
 		$sqlQuery->setNumber($idCategoria);
 		$sqlQuery->setNumber($idUsuario);
-		$sqlQuery->setNumber($idTag);
 
 		return $this->executeUpdate($sqlQuery);
 	}
@@ -65,7 +63,7 @@ class PostMySqlDAO implements PostDAO{
  	 * @param PostMySql post
  	 */
 	public function insert($post){
-		$sql = 'INSERT INTO post (titulo, texto, data, tags, id_post, id_categoria, id_usuario, id_tag) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO post (titulo, texto, data, tags, id_post, id_categoria, id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($post->titulo);
@@ -79,8 +77,6 @@ class PostMySqlDAO implements PostDAO{
 		$sqlQuery->setNumber($post->idCategoria);
 
 		$sqlQuery->setNumber($post->idUsuario);
-
-		$sqlQuery->setNumber($post->idTag);
 
 		$this->executeInsert($sqlQuery);	
 		//$post->id = $id;
@@ -93,7 +89,7 @@ class PostMySqlDAO implements PostDAO{
  	 * @param PostMySql post
  	 */
 	public function update($post){
-		$sql = 'UPDATE post SET titulo = ?, texto = ?, data = ?, tags = ? WHERE id_post = ?  AND id_categoria = ?  AND id_usuario = ?  AND id_tag = ? ';
+		$sql = 'UPDATE post SET titulo = ?, texto = ?, data = ?, tags = ? WHERE id_post = ?  AND id_categoria = ?  AND id_usuario = ? ';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($post->titulo);
@@ -107,8 +103,6 @@ class PostMySqlDAO implements PostDAO{
 		$sqlQuery->setNumber($post->idCategoria);
 
 		$sqlQuery->setNumber($post->idUsuario);
-
-		$sqlQuery->setNumber($post->idTag);
 
 		return $this->executeUpdate($sqlQuery);
 	}
@@ -192,7 +186,6 @@ class PostMySqlDAO implements PostDAO{
 		$post->idPost = $row['id_post'];
 		$post->idCategoria = $row['id_categoria'];
 		$post->idUsuario = $row['id_usuario'];
-		$post->idTag = $row['id_tag'];
 		$post->titulo = $row['titulo'];
 		$post->texto = $row['texto'];
 		$post->data = $row['data'];

@@ -3,7 +3,7 @@
  * Class that operate on table 'comentario'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2010-12-03 15:24
+ * @date: 2010-12-03 22:02
  */
 class ComentarioMySqlDAO implements ComentarioDAO{
 
@@ -137,8 +137,7 @@ class ComentarioMySqlDAO implements ComentarioDAO{
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
-
-
+	
 	public function deleteByNome($value){
 		$sql = 'DELETE FROM comentario WHERE nome = ?';
 		$sqlQuery = new SqlQuery($sql);
