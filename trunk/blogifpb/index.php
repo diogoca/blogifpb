@@ -35,7 +35,8 @@
                 
                 <?php foreach($post as $chave => $valor) : ?>
                 
-                <h3 class="post-title"><a href="post.php?id=<?php echo $valor->idPost ?>"><?php echo $valor->titulo ?></a></h3> <span class="date"><?php echo formataData($valor->data) ?></span><br /><br />
+                <h3 class="post-title"> <a href="post.php?id=<?php echo $valor->idPost ?>"><?php echo $valor->titulo ?></a></h3>
+				<span class="date"><?php echo formataData($valor->data) ?></span><br /><br />
                 
                 <?php endforeach; ?>                                                
                 
