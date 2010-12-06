@@ -9,6 +9,7 @@ class SqlQuery{
 	var $txt;
 	var $params = array();
 	var $idx = 0;
+	var $where_flag = false;
 
 	/**
 	 * Constructor
@@ -18,7 +19,16 @@ class SqlQuery{
 	function SqlQuery($txt){
 		$this->txt = $txt;
 	}
-
+	
+	public function addWhere($txt){
+		if ($this->where_flag == false){
+			$this->txt .= " where $txt ";
+			$this->where_flag = true;
+		}	
+		else
+			$this->txt .= " and $txt ";
+	}
+	
 	/**
 	 * Set string param
 	 *

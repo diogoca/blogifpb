@@ -31,6 +31,16 @@ class ComentarioMySqlDAO implements ComentarioDAO{
 		return $this->getList($sqlQuery);
 	}
 	
+	public function getCountComentariosByIdPost($idPost){
+		$sql = 'select count(id_comentario) from comentario where id_post = ? ';
+		
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($idPost);
+		
+		return $this->querySingleResult($sqlQuery);
+		
+	}
+	
 	/**
 	 * Get all records from table ordered by field
 	 *

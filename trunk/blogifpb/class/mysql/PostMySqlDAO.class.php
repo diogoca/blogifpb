@@ -29,12 +29,21 @@ class PostMySqlDAO implements PostDAO{
 	 * @param String $idPost 
 	 * @return PostMySql 
 	 */
-	public function getPostById($idPost){
-	$sql = 'SELECT * FROM post WHERE id_post = ? ';
-	$sqlQuery = new SqlQuery($sql);
-	$sqlQuery->setNumber($idPost);
+	public function getPosts($idCategoria = null){
+	
+		$sql = 'SELECT p.id_post, p.titulo, p.texto, p.data, u.email, c.nome
+				FROM post p
+				INNER JOIN categoria c ON ( p.id_categoria = c.id_categoria )
+				INNER JOIN usuario u ON ( p.id_usuario = u.id_usuario )';
+		
+		$sqlQuery = new SqlQuery($sql);
+		
+		if($idCategoria){
+			$sqlQuery->addWhere('c.id_categoria = ?');
+			$sqlQuery->setNumber($idCategoria);
+		}
 
-	return $this->getRow($sqlQuery);
+		return $this->getList($sqlQuery);
 	}
 	
 	/**

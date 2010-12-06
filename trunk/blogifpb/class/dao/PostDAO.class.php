@@ -21,7 +21,7 @@ interface PostDAO{
 	 * @param String $idPost 
 	 * @return PostMySql 
 	 */
-	public function getPostById($idPost);
+	public function getPosts($idCategoria);
 	
 	/**
 	 * Get all records from table

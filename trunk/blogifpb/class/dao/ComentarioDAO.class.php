@@ -19,7 +19,8 @@ interface ComentarioDAO{
 	 * Get all records from table
 	 */
 	public function queryAll();
-	
+
+	public function getCountComentariosByIdPost($idPost);
 	/**
 	 * Get all records from table ordered by field
 	 * @Param $orderColumn column name

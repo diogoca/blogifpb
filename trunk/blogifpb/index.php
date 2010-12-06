@@ -12,7 +12,7 @@
 	require('includes/head.php');
 	
 // Post > Lista
-	$post = DAOFactory::getPostDAO()->queryAllOrderBy('data');
+	$post = DAOFactory::getPostDAO()->getPosts(1);
 
 // Categoria > Lista
 	$categoria = DAOFactory::getCategoriaDAO()->queryAllOrderBy('nome');
@@ -32,38 +32,16 @@
         <div id="content-wrapper">
         
             <div id="content">
-                <?php
-					function showpost($valor){
-						echo "<h3 class=\"post-title\"><a href=\"post.php?id=$valor->idPost\">$valor->titulo</a></h3>";
-						echo "<p>$valor->texto</p>";
-						$u = DAOFactory::getUsuarioDAO()->load($valor->idUsuario);
-						$c = DAOFactory::getCategoriaDAO()->load($valor->idCategoria);
-						$com = DAOFactory::getComentarioDAO()->queryAll();
-						$coms = 0;
-						$data = formataData($valor->data);
-						foreach($com as $key =>$value)
-							{if ($value->idPost == $valor->idPost) $coms++;}
-						echo "<div class=\"commentbox\">Postado por $u->email | $data | $coms comentarios <br> Categoria : $c->nome</div>";
-					}
+			
+					<?php foreach($post as $chave => $valor) : ?>
+                
+					<h3 class="post-title"><a href="post.php?id=<?php echo $valor->idPost ?>"><?php echo $valor->titulo ?></a></h3>
+					<p><?php echo $valor->texto ?></p>
+					<div class="commentbox">Postado por italonerd@gmail.com | 03/12/2010 | 3 comentarios <br> Categoria : Carros</div>                                             	         
+			
+					<?php endforeach; ?>
+
 				
-					function getCategoria(){
-						$ret = "no";
-						if(isset($_GET['cat'])) 
-							$ret = $_GET['cat'];
-						return $ret;
-					}
-					
-					foreach($post as $chave => $valor) :  
-						$cat = getCategoria();
-						if($cat != "no"){
-							if($valor->idCategoria == $cat){
-								showpost($valor); }
-						}
-						else{
-							showpost($valor);
-						}
-					endforeach;
-				?>                                             	         
 			</div>               
         
 		</div>

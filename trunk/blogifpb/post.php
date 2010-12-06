@@ -13,6 +13,8 @@
 	
 // Post = unico
 	$p = DAOFactory::getPostDAO()->getPostById($_GET["id"]);
+	
+	
 // Categoria > Lista
 	$categoria = DAOFactory::getCategoriaDAO()->queryAllOrderBy('nome');
 
