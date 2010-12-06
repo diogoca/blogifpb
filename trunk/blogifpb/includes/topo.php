@@ -6,12 +6,12 @@
         <label>E-mail:</label>
         <input type="text" name="email" />
         <label>Senha:</label>
-        <input type="text" name="email" />                        
+        <input type="password" name="senha" />                        
         <input type="submit" value="OK" />
     </form>         
 
 <?php else : ?>
 
-	Olá, <strong><?php echo $_SESSION['email'] ?></strong>
+	<p id="formlogin" ><strong><?php echo $_SESSION['email'] ?></strong> - <a href="action/logoff.php">Logout</a></p>
 
 <?php endif; ?>

@@ -22,7 +22,21 @@ class PostMySqlDAO implements PostDAO{
 
 		return $this->getRow($sqlQuery);
 	}
+	
+	/**
+	 * Get Domain object by IdPost
+	 *
+	 * @param String $idPost 
+	 * @return PostMySql 
+	 */
+	public function getPostById($idPost){
+	$sql = 'SELECT * FROM post WHERE id_post = ? ';
+	$sqlQuery = new SqlQuery($sql);
+	$sqlQuery->setNumber($idPost);
 
+	return $this->getRow($sqlQuery);
+	}
+	
 	/**
 	 * Get all records from table
 	 */

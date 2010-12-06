@@ -14,7 +14,15 @@ interface PostDAO{
 	 * @Return Post 
 	 */
 	public function load($idPost, $idCategoria, $idUsuario);
-
+	
+	/**
+	 * Get Domain object by IdPost
+	 *
+	 * @param String $idPost 
+	 * @return PostMySql 
+	 */
+	public function getPostById($idPost);
+	
 	/**
 	 * Get all records from table
 	 */

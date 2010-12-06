@@ -222,15 +222,15 @@ cite
 
 }
 
-#navigation ul li.current_page_item   a:link,
-#navigation ul li.current_page_item   a:visited,
-#navigation ul li.current_page_item   a:hover,
-#navigation ul li.current_page_item   a:active
+#current_page_item   a:link,
+#current_page_item   a:visited,
+#current_page_item   a:hover,
+#current_page_item   a:active
 {
 	color: #ffffff;
 	background-color: #414646;
 	border-left: solid #6b7070 1px;
-        border-right: solid #6b7070 1px;
+    border-right: solid #6b7070 1px;
 }
 
 #navigation ul li.search
