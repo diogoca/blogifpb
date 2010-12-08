@@ -1,0 +1,1 @@
+<div id="footer">By <a href="http://kismet.blogsite.org">Kismet</a>. Original design <a href="http://www.nikhedonia.com/showcase/entry/one-penny/">here</a> by SimplyGold.</div>
