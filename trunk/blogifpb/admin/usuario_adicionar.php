@@ -11,8 +11,6 @@
 // Head
 	require('../includes/head.php');
 	
-
-	
 ?>
 
 <body>
@@ -36,7 +34,7 @@
 								<input type="text" name="email" />
 							<label>Senha: </label>
 								<input type="password" name="senha" />
-							<label>Confirmação.de.Senha: </label>							
+							<label>Confirme sua senha:</label>							
 								<input type="password" name="confirme_senha" />
 							<input type="submit" value="Enviar" class="submit">
 				</form>		

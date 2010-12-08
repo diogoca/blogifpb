@@ -30,6 +30,8 @@
         <div id="content-wrapper">
         
             <div id="content">
+            
+            <p>Um usuário só pode adicionar novos usuários, ele não tem permissão para deletar <br /> posts, nem qualquer configuração de outros usuários.</p>
 			
 				<table>
 							

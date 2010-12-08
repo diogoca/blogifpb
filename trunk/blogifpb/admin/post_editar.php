@@ -8,9 +8,6 @@
 // Head
 	require('../includes/head.php');
 
-// JavaScript
-	require('../includes/js_post.php');
-
 // Post
 	//parametro
 	$id_post = $_GET['id_post'];
@@ -58,7 +55,7 @@
 							</SELECT>
 							
 							<label>Conteudo: </label>
-								<textarea name="texto" class="text_post" ><?php echo $value->texto?></textarea>
+								<textarea name="texto" class="textareapost" ><?php echo $value->texto?></textarea>
 							<input type="submit" value="Enviar" class="submit">
 				</form>		
 				
@@ -90,6 +87,16 @@
       </div> 
       
    </div>
+   
+   <!-- Javascript //-->
+   
+   <script type="text/javascript" src="admin/js/tiny_mce/tiny_mce.js"></script>
+   <script type="text/javascript">
+    tinyMCE.init({
+        mode : "textareas",
+        theme : "simple"
+    });
+    </script>
 </body>
 
 </html>
