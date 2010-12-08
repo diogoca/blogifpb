@@ -31,7 +31,7 @@ class PostMySqlDAO implements PostDAO{
 	 */
 	public function getPosts($idCategoria = null, $idPost = null, $emailUsuario = null){
 	
-		$sql = 'SELECT p.id_post, p.titulo, p.texto, p.data, u.email, c.nome
+		$sql = 'SELECT p.id_post, p.titulo, p.texto, p.data, p.id_categoria, u.email, c.nome
 				FROM post p
 				INNER JOIN categoria c ON ( p.id_categoria = c.id_categoria )
 				INNER JOIN usuario u ON ( p.id_usuario = u.id_usuario )';
@@ -80,12 +80,11 @@ class PostMySqlDAO implements PostDAO{
  	 * Delete record from table
  	 * @param post primary key
  	 */
-	public function delete($idPost, $idCategoria, $idUsuario){
-		$sql = 'DELETE FROM post WHERE id_post = ?  AND id_categoria = ?  AND id_usuario = ? ';
+	public function delete($idPost){
+		$sql = 'DELETE FROM post WHERE id_post = ?  ';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($idPost);
-		$sqlQuery->setNumber($idCategoria);
-		$sqlQuery->setNumber($idUsuario);
+
 
 		return $this->executeUpdate($sqlQuery);
 	}
@@ -122,7 +121,7 @@ class PostMySqlDAO implements PostDAO{
  	 * @param PostMySql post
  	 */
 	public function update($post){
-		$sql = 'UPDATE post SET titulo = ?, texto = ?, data = ?, tags = ? WHERE id_post = ?  AND id_categoria = ?  AND id_usuario = ? ';
+		$sql = 'UPDATE post SET titulo = ?, texto = ?, data = ?, tags = ?, id_categoria = ? WHERE id_post = ? ';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($post->titulo);
@@ -130,12 +129,10 @@ class PostMySqlDAO implements PostDAO{
 		$sqlQuery->set($post->data);
 		$sqlQuery->set($post->tags);
 
-		
+		$sqlQuery->setNumber($post->idCategoria);	
+	
 		$sqlQuery->setNumber($post->idPost);
-
-		$sqlQuery->setNumber($post->idCategoria);
-
-		$sqlQuery->setNumber($post->idUsuario);
+	
 
 		return $this->executeUpdate($sqlQuery);
 	}
@@ -224,7 +221,7 @@ class PostMySqlDAO implements PostDAO{
 		$post->data = $row['data'];
 		$post->tags = $row['tags'];
 		$post->nomeCategoria = $row['nome'];
-		$post->nomeUsuario = $row['email'];
+		$post->emailUsuario = $row['email'];
 		
 		return $post;
 	}

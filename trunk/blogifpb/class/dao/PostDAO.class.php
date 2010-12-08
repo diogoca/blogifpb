@@ -38,7 +38,7 @@ interface PostDAO{
  	 * Delete record from table
  	 * @param post primary key
  	 */
-	public function delete($idPost, $idCategoria, $idUsuario);
+	public function delete($idPost);
 	
 	/**
  	 * Insert record to table

@@ -8,7 +8,8 @@
 interface UsuarioDAO{
 
 	public function login($email, $senha);
-
+	
+	public function search($email);
 	/**
 	 * Get Domain object by primry key
 	 *

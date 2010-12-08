@@ -17,7 +17,8 @@
 		
 		var $nomeCategoria;
 		
-		var $nomeUsuario;
+		var $emailUsuario;
+		
 		
 	}
 ?>

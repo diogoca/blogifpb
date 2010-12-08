@@ -1,15 +1,19 @@
 <?php 
 // Bibliotecas
 	require_once('../config.php');
-
+	
 // Sessão Login
 	session_start();
 
 // Head
 	require('../includes/head.php');
 	
-// Post > Lista
-	$categoria = DAOFactory::getCategoriaDAO()->queryAllOrderBy('nome');
+// Categoria 
+	
+	//Parametros
+	$id_categoria = $_GET['id_categoria'];
+	//> Lista
+	$categoria = DAOFactory::getCategoriaDAO()->load($id_categoria);
 ?>
 
 <body>
@@ -23,23 +27,20 @@
         <?php require('../includes/menu.php'); ?>    
         
         <div id="content-wrapper">
-        
-            <div id="content">
 			
-				<table>
-				
-					<?php foreach($categoria as $chave => $valor) : ?>
-					
-					<tr>
-						<td><a href="categoria.php?id_categoria=<?php echo $valor->idCategoria; ?>"><?php echo $valor->nome ?></a></td>
-						<td><a href="admin/categoria_editar.php?id_categoria=<?php echo $valor->idCategoria ?>">Editar</a></td>
-						<td><a href="action/categoria_excluir.php?id_categoria=<?php echo $valor->idCategoria ?>" class="red">Excluir</a></td>
-					</tr>
-					
-					<?php endforeach; ?>
-				
-				</table>
-				
+			
+			<h3 class="categoria_title" >Editar Categoria: </h3></br></br>
+            
+			<div id="content">
+							
+				<form class="form" action="action/categoria_editar.php" method="POST">
+							<input type="hidden" name="id_categoria" value="<?php echo $categoria->idCategoria ?>"/>
+							<label>Categoria : <a href="categoria.php?id_categoria=<?php echo $categoria->idCategoria; ?>"><?php echo $categoria->nome ?></a></label><br/><br/>
+							<label>Nome:</label>
+								<input type="text" name="nome" />
+							<input type="submit" value="Enviar" class="submit">
+				</form>		
+			
 			</div>               
         
 		</div>
@@ -69,4 +70,3 @@
 </body>
 
 </html>
-

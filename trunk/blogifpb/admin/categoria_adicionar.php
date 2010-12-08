@@ -1,15 +1,13 @@
 <?php 
 // Bibliotecas
 	require_once('../config.php');
-
+	
 // Sessão Login
 	session_start();
 
 // Head
 	require('../includes/head.php');
 	
-// Post > Lista
-	$categoria = DAOFactory::getCategoriaDAO()->queryAllOrderBy('nome');
 ?>
 
 <body>
@@ -23,23 +21,18 @@
         <?php require('../includes/menu.php'); ?>    
         
         <div id="content-wrapper">
-        
-            <div id="content">
 			
-				<table>
-				
-					<?php foreach($categoria as $chave => $valor) : ?>
-					
-					<tr>
-						<td><a href="categoria.php?id_categoria=<?php echo $valor->idCategoria; ?>"><?php echo $valor->nome ?></a></td>
-						<td><a href="admin/categoria_editar.php?id_categoria=<?php echo $valor->idCategoria ?>">Editar</a></td>
-						<td><a href="action/categoria_excluir.php?id_categoria=<?php echo $valor->idCategoria ?>" class="red">Excluir</a></td>
-					</tr>
-					
-					<?php endforeach; ?>
-				
-				</table>
-				
+			
+			<h3 class="categoria_title" >Adicionar Categoria: </h3></br></br>
+            
+			<div id="content">
+							
+				<form class="form" action="action/categoria_adicionar.php" method="POST">
+							<label>Nome: </label>
+								<input type="text" name="nome" />
+							<input type="submit" value="Enviar" class="submit">
+				</form>		
+			
 			</div>               
         
 		</div>
@@ -69,4 +62,3 @@
 </body>
 
 </html>
-

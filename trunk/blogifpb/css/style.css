@@ -1,17 +1,22 @@
 /*modificações */
+.categoria_title{margin-left:20px; margin-top:30px; margin-bottom:0px }
 
 table{float:left;width:580px}
-table td{width:500px; padding:5px}
-table tr{float:left; width:100%; border-bottom:#ccc solid 1px}
+table td{width:44%; padding:5px}
+table tr{float:left; width:100%; border-bottom:#ccc solid 1px; border-right:#ccc solid 1px}
 
 .direita{float:right !important}
 .red{color:red !important}
 
-.commentform {width:400px}
-.commentform input,.commentform textarea{margin-bottom:10px}
-.commentform input:focus,.commentform textarea:focus{background-color:#EEE}
-.commentform input,.commentform label,.commentform textarea{width:400px}
-.commentform .submit{float:right; width:100px}
+
+
+.form {width:400px}
+.form input,.form textarea,.form select{margin-bottom:10px}
+.form input:focus,.form textarea:focus,.form select:focus{background-color:#EEE}
+.form input,.form label,.form textarea,.form select{width:400px;}
+.form .submit{float:right; width:100px;margin-top:10px}
+
+.text_post{height:100px;width:400px;}
 
 .logon
 {
@@ -54,7 +59,7 @@ h1 { font-size: 36px; color: #293138;}
 
 h2 { font-size: 28px; color: #353F47;}
 
-.post-title h2 {color: #3f4f5c; font-weight:bold; text-transform: uppercase; margin-bottom:5px;}
+.post-title h2 {color: #3f4f5c; font-weight:bold; text-transform: uppercase; margin-bottom:10px;}
 
 h3 { font-size: 24px; color: #3f4f5c;}
 

@@ -35,8 +35,8 @@
 					
 					<tr>
 						<td><a href="post.php?id_post=<?php echo $valor->idPost; ?>"> <?php echo $valor->titulo ?> </a></td>
-						<td><a href="<?php echo $valor->idPost ?>">Editar</a></td>
-						<td><a href="" class="red">Excluir</a></td>
+						<td><a href="admin/post_editar.php?id_post=<?php echo $valor->idPost ?>">Editar</a></td>
+						<td><a href="action/post_excluir.php?id_post=<?php echo $valor->idPost ?>" class="red">Excluir</a></td>
 					</tr>
 					
 					<?php endforeach; ?>
@@ -56,7 +56,7 @@
            
            <ul id="sidenotes">
 	
-				<li><a href="">Adicionar</a></li>
+				<li><a href="admin/post_adicionar.php">Adicionar</a></li>
 				
 			</ul>
            

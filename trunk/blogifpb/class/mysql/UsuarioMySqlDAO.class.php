@@ -20,7 +20,15 @@ class UsuarioMySqlDAO implements UsuarioDAO{
 			return false;
 			
 	}
-
+	
+	public function search($email){
+		$sql = 'SELECT * FROM usuario WHERE email = ?';
+		
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($email);
+		
+		return $this->getRow($sqlQuery);	
+	}
 	/**
 	 * Get Domain object by primry key
 	 *

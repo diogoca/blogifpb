@@ -48,7 +48,7 @@
 				
 				<?php foreach($post as $chave => $valor) : ?>
 			
-				<h3 class="post-title"><a href="post.php?id=<?php echo $valor->idPost ?>"><?php echo $valor->titulo ?></a></h3>
+				<h3 class="post-title"><?php echo $valor->titulo ?></h3>
 				<p><?php echo $valor->texto ?></p>
 				<div class="commentbox">Postado por <?php echo $valor->nomeUsuario ?> | <?php echo formataData($valor->data) ?> | Categoria : <?php echo $valor->nomeCategoria ?></div>                                             	         
 		
@@ -82,10 +82,10 @@
 					
 					<div class="comment">
 					
-						 <form class="commentform" action="action/registrocomentario.php" method="POST">
+						 <form class="form" action="action/post_comentario.php" method="POST">
 							<input type="hidden" name="id_post" value="<?php echo $valor->idPost ?>"/>
 							<label>Nome:</label>
-								<input type="text" name="nome"/>
+								<input type="text" name="nome" "/>
 							<label>E-mail:</label>
 								<input type="text" name="email"/>
 							<label>Site:</label>

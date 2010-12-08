@@ -7,7 +7,7 @@
 			<li><a href="index.php" >Home</a></li>
 			
 			<li class="direita"><a href="admin/post.php" >Posts</a></li>
-			<li class="direita"><a href="categoria.php" >Categorias</a></li>
+			<li class="direita"><a href="admin/categoria.php" >Categorias</a></li>
 			<li class="direita"><a href="#" >Comentarios</a></li>
 			<li class="direita"><a href="#" >Usuarios</a></li>
 
