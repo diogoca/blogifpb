@@ -9,7 +9,7 @@
 			<li class="direita"><a href="admin/post.php" >Posts</a></li>
 			<li class="direita"><a href="admin/categoria.php" >Categorias</a></li>
 			<li class="direita"><a href="#" >Comentarios</a></li>
-			<li class="direita"><a href="#" >Usuarios</a></li>
+			<li class="direita"><a href="admin/usuario.php" >Usuarios</a></li>
 
 		<?php endif; ?>
    </ul>           			  
