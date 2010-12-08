@@ -2,9 +2,6 @@
 //Bibliotecas
 require_once('..\config.php');
 
-//Sessão
-	session_start();
-
 // Post
 $id_post = $_POST['id_post'];
 
