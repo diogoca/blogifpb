@@ -1,6 +1,7 @@
 <?php
 // Configurações do blog
 define('blog_titulo', 'BlogIFPB');
+define('blog_endereco', 'http://localhost/blogifpb/');
 
 // Configurações do Banco de Dados
 define('bd_host', 'localhost');
