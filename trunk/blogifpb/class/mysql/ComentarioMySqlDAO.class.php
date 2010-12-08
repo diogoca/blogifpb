@@ -5,8 +5,8 @@
  * @author: http://phpdao.com
  * @date: 2010-12-03 22:02
  */
-class ComentarioMySqlDAO implements ComentarioDAO{
-
+class ComentarioMySqlDAO implements ComentarioDAO{		
+	
 	public function getComentariosByIdPost($idPost = null){
 	
 		$sql = 'SELECT *

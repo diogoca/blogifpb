@@ -36,6 +36,17 @@ class QueryExecutor{
 		}
 		return $tab;
 	}
+
+        public static function executeSimpleQuery($sqlQuery){
+		$transaction = Transaction::getCurrentTransaction();
+		if(!$transaction){
+			$connection = new Connection();
+		}else{
+			$connection = $transaction->getConnection();
+		}
+		$connection->executeQuery($sqlQuery);
+                
+	}
 	
 	
 	public static function executeUpdate($sqlQuery){

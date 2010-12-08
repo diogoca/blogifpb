@@ -7,7 +7,7 @@
  */
 interface ComentarioDAO{
 	
-	public function getComentariosByIdPost($idPost);
+	public function getComentariosByIdPost();
 	
 	/**
 	 * Get Domain object by primry key

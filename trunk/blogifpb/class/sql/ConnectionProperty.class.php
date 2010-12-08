@@ -6,10 +6,10 @@
  * @date: 27.11.2007
  */
 class ConnectionProperty{
-	private static $host = 'localhost';
-	private static $user = 'root';
-	private static $password = '';
-	private static $database = 'blogifpb';
+	private static $host = bd_host;
+	private static $user = bd_user;
+	private static $password = bd_password;
+	private static $database = bd_database;
 
 	public static function getHost(){
 		return ConnectionProperty::$host;
