@@ -12,7 +12,7 @@
 	require('includes/head.php');
 	
 // Post > Lista
-	$post = DAOFactory::getPostDAO()->getPosts(1);
+	$post = DAOFactory::getPostDAO()->getPosts();
 
 // Categoria > Lista
 	$categoria = DAOFactory::getCategoriaDAO()->queryAllOrderBy('nome');
@@ -22,7 +22,7 @@
 <body>
 
    <div id="container">
-
+		
       <?php require('includes/topo.php'); ?>          
 	
       <div id="wrapper">
@@ -35,9 +35,9 @@
 			
 					<?php foreach($post as $chave => $valor) : ?>
                 
-					<h3 class="post-title"><a href="post.php?id=<?php echo $valor->idPost ?>"><?php echo $valor->titulo ?></a></h3>
+					<h3 class="post-title"><a href="post.php?id_post=<?php echo $valor->idPost ?>"><?php echo $valor->titulo ?></a></h3>
 					<p><?php echo $valor->texto ?></p>
-					<div class="commentbox">Postado por italonerd@gmail.com | 03/12/2010 | 3 comentarios <br> Categoria : Carros</div>                                             	         
+					<div class="commentbox">Postado por <?php echo $valor->nomeUsuario ?> | <?php echo formataData($valor->data) ?> | <?php echo DAOFactory::getComentarioDAO()->getCountComentariosByIdPost($valor->idPost) ?> comentarios <br> Categoria : <?php echo $valor->nomeCategoria ?></div>                                             	         
 			
 					<?php endforeach; ?>
 
@@ -53,15 +53,7 @@
            
            <h3>Categorias</h3>
            
-           <ul id="sidenotes">
-           		
-                <?php foreach($categoria as $chave => $valor) : ?>
-                
-                <li><a href="index.php?cat=<?php echo $valor->idCategoria ?>"><?php echo $valor->nome ?></a></li>
-                
-                <?php endforeach; ?>
-                
-           </ul>
+           <?php require('includes/menu_categoria.php') ?>
            
           </div> 
           

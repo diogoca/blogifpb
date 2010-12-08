@@ -11,9 +11,21 @@
 // Head
 	require('includes/head.php');
 	
-// Post = unico
-	$p = DAOFactory::getPostDAO()->getPostById($_GET["id"]);
+// Post
 	
+	// Parametros
+	$id_post = $_GET['id_post'];
+	
+	// Lista
+	$post = DAOFactory::getPostDAO()->getPosts(null, $id_post);
+
+// Comentari
+
+	// Lista
+	$comentario = DAOFactory::getComentarioDAO()->getComentariosByIdPost($id_post);
+	
+	// Quantidade (Count)
+	$totalComentarios = DAOFactory::getComentarioDAO()->getCountComentariosByIdPost($id_post);
 	
 // Categoria > Lista
 	$categoria = DAOFactory::getCategoriaDAO()->queryAllOrderBy('nome');
@@ -33,64 +45,71 @@
         <div id="content-wrapper">
         
             <div id="content">
-                <?php
-							
-				//função das para mostrar o post 
 				
-					echo "<h3 class=\"post-title\">$p->titulo</h3>".
-						 "<p>$p->texto</p>";
-					
-					$u = DAOFactory::getUsuarioDAO()->load($p->idUsuario);
-					$c = DAOFactory::getCategoriaDAO()->load($p->idCategoria);
-					$com = DAOFactory::getComentarioDAO()->queryAll();
-					$coms = 0;
-					$s = "";
-					$data = formataData($p->data);
-					echo "<div class=\"commentbox\">Postado por $u->email | $data <br> Categoria : $c->nome</div>";
-					
-					foreach($com as $k=>$come){
-						if ($come->idPost == $p->idPost) {
-							$coms++;
-							$s .= "<div class=\"comment\"><cite>$come->nome</cite><cite> - $come->email</cite><br />".
-							"<cite>$come->site</cite><br /><p>$come->texto</p></div>";
-						}
-					}
-					
-					$s .="</div>";
-					echo "<div id=\"comments\"><h4>$coms Respostas para &#8220;$p->titulo&#8221;</h4>".$s;
-							
-					echo "<div id=\"comments\"><h5>Comentar: </h5><div class=\"comment\">".
-						 "<form action=\"action/registrocomentario.php?id=$p->idPost\" method=\"POST\">".
-						 "<cite>Nome: <input type=\"text\" name=\"nome\"/></cite><br />".
-						 "<cite>Email:<input type=\"text\" name=\"email\"/> </cite><br />".
-						 "<cite>Site: <input type=\"text\" name=\"site\"/></cite><br />Comentario:<br/>".
-						 "<textarea name=\"texto\" rows=\"4\" cols=\"40\"></textarea><br/>".
-						 "<input type=\"submit\" value=\"Enviar\"></form></div></div>";
-							
-					
-											
-			?>                                             	         
+				<?php foreach($post as $chave => $valor) : ?>
 			
+				<h3 class="post-title"><a href="post.php?id=<?php echo $valor->idPost ?>"><?php echo $valor->titulo ?></a></h3>
+				<p><?php echo $valor->texto ?></p>
+				<div class="commentbox">Postado por <?php echo $valor->nomeUsuario ?> | <?php echo formataData($valor->data) ?> | Categoria : <?php echo $valor->nomeCategoria ?></div>                                             	         
+		
+				<?php endforeach; ?>
+				
+				<div id="comments">				
+				
+					<h4><?php echo $totalComentarios ?> respostas para <?php echo $valor->titulo ?></h4>
+				
+					<?php foreach($comentario as $chave => $v) : ?>
+						
+						<div class="comment">
+							<cite><?php echo $v->nome ?></cite><cite> - <?php echo $v->email ?></cite><br />
+							
+							<?php if(!empty($v->site)) : ?>
+							
+								<cite><a href="<?php echo $v->site ?>"><?php echo $v->site ?></a></cite><br />
+							
+							<?php endif; ?>
+							
+							<p><?php echo $v->texto ?></p>
+						</div>
+					
+					<?php endforeach; ?>
+					
+				</div>
+				
+				<div id="comments">
+				
+					<h5>Faça um comentário</h5>
+					
+					<div class="comment">
+					
+						 <form class="commentform" action="action/registrocomentario.php" method="POST">
+							<input type="hidden" name="id_post" value="<?php echo $valor->idPost ?>"/>
+							<label>Nome:</label>
+								<input type="text" name="nome"/>
+							<label>E-mail:</label>
+								<input type="text" name="email"/>
+							<label>Site:</label>
+								<input type="text" name="site"/>
+							<label>Comentario:</label>
+								<textarea name="texto"></textarea>
+							<input type="submit" value="Enviar" class="submit">
+						</form>
+						
+					</div>
+					
+				</div>
+				
 			</div>               
         
 		</div>
         
-        
-        <div id="sidebar-wrapper">
+		<div id="sidebar-wrapper">
         
           <div id="sidebar">
            
            <h3>Categorias</h3>
            
-           <ul id="sidenotes">
-           		
-                <?php foreach($categoria as $chave => $valor) : ?>
-                
-                <li><a href="index.php?cat=<?php echo $valor->idCategoria ?>"><?php echo $valor->nome ?></a></li>
-                
-                <?php endforeach; ?>
-                
-           </ul>
+           <?php require('includes/menu_categoria.php') ?>
            
           </div> 
           

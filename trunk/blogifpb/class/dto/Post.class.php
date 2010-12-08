@@ -14,6 +14,10 @@
 		var $texto;
 		var $data;
 		var $tags;
+		
+		var $nomeCategoria;
+		
+		var $nomeUsuario;
 		
 	}
 ?>

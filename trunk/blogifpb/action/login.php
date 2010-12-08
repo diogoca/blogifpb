@@ -1,20 +1,25 @@
-<?php
-require_once('..\config.php');
+<?php 
+// Bibliotecas
+	require_once('../config.php');
 
-session_start();
+// Sessão Login
+	session_start();
 
-$email = $_POST['email'];
-$senha = $_POST['senha'];
+// Parametros
+	$email = $_POST['email'];
+	$senha = $_POST['senha'];
 
-$u = DAOFactory::getUsuarioDAO()->queryAll();
-foreach($u as $key=>$usu){
-	if ( ($usu->email == $email) and ($usu->senha == $senha) ){
-		$_SESSION['email'] = $email; 
-		break; 
-		}
-}
+// Usuario
 
+	// Login
+	$usuario = DAOFactory::getUsuarioDAO()->login($email, $senha);
 
-header('location:' . $_SERVER['HTTP_REFERER']);
+	// Eco
+	if($usuario)
+		$_SESSION['email'] = $email;
+	else
+		echo "<script>alert('Usuário ou senha inválidos!');</script>";
+	
+echo '<script>window.location = "' . $_SERVER['HTTP_REFERER'] .'"</script>';
 
 ?>

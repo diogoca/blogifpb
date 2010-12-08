@@ -3,7 +3,7 @@ require_once('..\config.php');
 
 session_start();
 
-$id = $_GET['id'];
+$id = $_POST['id_post'];
 $texto = $_POST['texto'];
 $nome = $_POST['nome'];
 $site = $_POST['site'];

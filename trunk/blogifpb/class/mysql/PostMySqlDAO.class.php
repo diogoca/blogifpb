@@ -29,7 +29,7 @@ class PostMySqlDAO implements PostDAO{
 	 * @param String $idPost 
 	 * @return PostMySql 
 	 */
-	public function getPosts($idCategoria = null){
+	public function getPosts($idCategoria = null, $idPost = null, $emailUsuario = null){
 	
 		$sql = 'SELECT p.id_post, p.titulo, p.texto, p.data, u.email, c.nome
 				FROM post p
@@ -42,7 +42,17 @@ class PostMySqlDAO implements PostDAO{
 			$sqlQuery->addWhere('c.id_categoria = ?');
 			$sqlQuery->setNumber($idCategoria);
 		}
-
+		
+		if($idPost){
+			$sqlQuery->addWhere('p.id_post = ?');
+			$sqlQuery->setNumber($idPost);
+		}
+		
+		if($emailUsuario){
+			$sqlQuery->addWhere('u.email = ?');
+			$sqlQuery->set($emailUsuario);
+		}
+		
 		return $this->getList($sqlQuery);
 	}
 	
@@ -213,7 +223,9 @@ class PostMySqlDAO implements PostDAO{
 		$post->texto = $row['texto'];
 		$post->data = $row['data'];
 		$post->tags = $row['tags'];
-
+		$post->nomeCategoria = $row['nome'];
+		$post->nomeUsuario = $row['email'];
+		
 		return $post;
 	}
 	

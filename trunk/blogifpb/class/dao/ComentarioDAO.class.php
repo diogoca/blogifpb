@@ -6,7 +6,9 @@
  * @date: 2010-12-03 22:02
  */
 interface ComentarioDAO{
-
+	
+	public function getComentariosByIdPost($idPost);
+	
 	/**
 	 * Get Domain object by primry key
 	 *

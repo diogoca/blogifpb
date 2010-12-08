@@ -7,6 +7,21 @@
  */
 class ComentarioMySqlDAO implements ComentarioDAO{
 
+	public function getComentariosByIdPost($idPost = null){
+	
+		$sql = 'SELECT *
+				FROM comentario';
+		
+		$sqlQuery = new SqlQuery($sql);
+		
+		if($idPost){
+			$sqlQuery->addWhere('id_post = ?');
+			$sqlQuery->setNumber($idPost);
+		}
+		
+		return $this->getList($sqlQuery);
+	}
+
 	/**
 	 * Get Domain object by primry key
 	 *

@@ -7,6 +7,20 @@
  */
 class UsuarioMySqlDAO implements UsuarioDAO{
 
+	public function login($email, $senha){
+		$sql = 'SELECT * FROM usuario WHERE email = ? and senha = ?';
+		
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($email);
+		$sqlQuery->set($senha);
+		
+		if ($this->getRow($sqlQuery))
+			return true;
+		else
+			return false;
+			
+	}
+
 	/**
 	 * Get Domain object by primry key
 	 *
