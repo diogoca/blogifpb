@@ -1,17 +1,13 @@
 = Documento de descrição do projeto =
 
-  * Requisitos (Funcionais e Não Funcionais); -> Feito
-  * Gráfico de Atividades (http://tinyurl.com/3xdq9yv); -> Feito
-  * Descrição da Equipe (http://tinyurl.com/23khpmq); -> Feito
-  * Casos de Uso; -> Feito
+  * Requisitos (Funcionais e Não Funcionais);
+  * Gráfico de Atividades (http://tinyurl.com/3xdq9yv);
+  * Descrição da Equipe (http://tinyurl.com/23khpmq);
+  * Casos de Uso;
   * Modelagem da Arquitetura;
   * Prototipagem (Wireframes); 
-  * Modelagem ER; -> Feito
+  * Modelagem ER;
   * Diagrama de Classe;
   * Diagrama de Sequência;
   * Documentação do código (http://www.phpdoc.org/);
   * Código fonte
-
-= Demonstração do projeto =
-
-Cada integrante do grupo deverá preparar uma apresentação disponibilizada no youtube de parte das funcionalidades do sistema, com no máximo 5 minutos (lembrando que a captura da apresentação deverá ser feita por programas como o wink - http://www.debugmode.com/wink/ que também permite gravação de aúdio e textos para explicação).
