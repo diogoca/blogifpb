@@ -7,7 +7,6 @@ CRUD em:
   * Comentário
   * Blog
   * Categoria
-  * Tag
 
 ==Não funcionais==
 
