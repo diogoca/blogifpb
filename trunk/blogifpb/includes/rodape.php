@@ -1,0 +1,1 @@
+<div id="footer">Projeto no <a href="http://code.google.com/p/blogifpb/">Google Code</a> - Design por <a href="http://kismet.blogsite.org">Kismet</a>, original em <a href="http://www.nikhedonia.com/showcase/entry/one-penny/">SimplyGold</a>.</div>
